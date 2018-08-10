@@ -20,20 +20,30 @@ public class ArrayCollection implements Collection {
     }
 
     public void remove(Object element) {
-
+        int i = indexOf(element);
+        if (i != -1) {
+            elementData[i] = elementData[--size];
+            elementData[size] = null;
+        }
     }
 
     public boolean isEmpty() {
         return size == 0;
     }
 
-    public boolean contains(Object element) {
-        return false;
+    public boolean contains(Object e) {
+        return indexOf(e) != -1;
     }
 
     public int size() {
         return size;
 
     }
+    private int indexOf(Object e) {
+        for (int i=0; i<size; i++)
+            if (elementData[i].equals(e)) return i;
+        return -1;
+    }
+
 
 }
